@@ -13,7 +13,7 @@ import math
 from typing import Tuple
 
 
-def find_maximum_and_minimum(file_name: str) -> Tuple[int, int]:
+def find_maxi_and_min(file_name: str) -> Tuple[int, int]:
     minint = math.inf
     maxint = -math.inf
     with open(file_name) as fi:
