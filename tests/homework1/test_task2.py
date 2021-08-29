@@ -9,6 +9,10 @@ def test_positive_case_base():
     assert check_fibonacci([1, 1, 2, 3, 5])
 
 
+def test_positive_case_with_negatives():
+    assert check_fibonacci([5, -3, 2, -1, 1, 0, 1, 1, 2, 3, 5])
+
+
 def test_positive_case_random_numbers():
     assert check_fibonacci([2, 1, 3, 4, 7])
 

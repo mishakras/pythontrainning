@@ -18,22 +18,8 @@ def find_maxi_and_min(file_name: str) -> Tuple[int, int]:
     maxint = -math.inf
     with open(file_name) as fi:
         for line in fi:
-            length = len(line)
-            i = 0
-            while i < length:
-                s_int = ''
-                a = line[i]
-                while '0' <= a <= '9' or a == "-":
-                    s_int += a
-                    i += 1
-                    if i < length:
-                        a = line[i]
-                    else:
-                        break
-                i += 1
-                if s_int != '':
-                    if int(s_int) < minint:
-                        minint = int(s_int)
-                    if int(s_int) > maxint:
-                        maxint = int(s_int)
+            if int(line) < minint:
+                minint = int(line)
+            if int(line) > maxint:
+                maxint = int(line)
     return minint, maxint

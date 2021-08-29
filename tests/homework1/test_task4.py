@@ -10,4 +10,4 @@ def test_all_zeros():
 
 
 def test_some_zero_sums():
-    assert check_sum_of_four([1, 1], [-1], [0], [0]) == 2
+    assert check_sum_of_four([1, 1], [-1, 100], [0, 100], [0, 100]) == 2

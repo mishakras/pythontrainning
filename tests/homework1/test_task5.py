@@ -10,11 +10,11 @@ def test_max_in_array():
 
 
 def test_some_subarray():
-    assert find_maximal_subarray_sum([1, 5, 8, 0, -1, 4, 3], 4) == 20
+    assert find_maximal_subarray_sum([1, 5, 8, 0, -1, 4, 3], 4) == 14
 
 
 def test_subarray_with_repeating_numbers():
-    assert find_maximal_subarray_sum([1, 5, 8, 0, 8, 8], 3) == 24
+    assert find_maximal_subarray_sum([1, 5, 8, 0, 8, 8], 3) == 16
 
 
 def test_subarray_with_only_negatives():
