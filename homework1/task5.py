@@ -16,27 +16,17 @@ def find_maximal_subarray_sum(nums: List[int], k: int) -> int:
     max_sum = 0
     temp_sum = 0
     i = 0
-    j = 0
     min_sum = -math.inf
-    while i < len(nums):
-        if nums[i] > 0:
-            if j < k:
-                temp_sum = temp_sum + nums[i]
-                if temp_sum > max_sum:
-                    max_sum = temp_sum
-                j = j + 1
-            else:
-                temp_sum = temp_sum - nums[i-j] + nums[i]
-                if temp_sum > max_sum:
-                    max_sum = temp_sum
-        else:
-            j = 0
-            temp_sum = 0
-            if nums[i] > min_sum:
-                min_sum = nums[i]
-        i = i + 1
-    if min_sum == -math.inf:
-        min_sum = 0
+    for length in nums:
+        for j in range(k):
+            for k in nums[i:j]:
+                temp_sum = temp_sum + k
+            if temp_sum > max_sum:
+                max_sum = temp_sum
+        i += 1
+    for j in nums:
+        if min_sum < j < 0:
+            min_sum = j
     if max_sum > 0:
         return max_sum
     else:

@@ -34,5 +34,5 @@ def check_sum_of_four(a: List[int], b: List[int], c: List[int],
                     if i + j + k + g > 0:
                         break
                     if i + j + k + g == 0:
-                        amount = amount + 1
+                        amount += 1
     return amount
