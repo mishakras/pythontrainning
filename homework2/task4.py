@@ -10,13 +10,13 @@ val_1 = cache_func(*some)
 val_2 = cache_func(*some)
 assert val_1 is val_2
 """
-from typing import Callable
-
-
-
+from typing import Any, List, Callable, Tuple
 
 
 def cache(func: Callable) -> Callable:
-    def fin():
-        pass
+
+    def fin(*args, lst: List = []) -> Tuple[List, Any]:
+        a = func(*args)
+        lst.append(a)
+        return lst, a
     return fin

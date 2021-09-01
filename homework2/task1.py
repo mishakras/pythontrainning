@@ -12,7 +12,7 @@ from typing import List
 
 
 def get_longest_diverse_words(file_path: str) -> List[str]:
-    final = []
+    temp_final = []
     with open(file_path) as fi:
         for line in fi:
             temp = line.split(' ')
@@ -21,15 +21,32 @@ def get_longest_diverse_words(file_path: str) -> List[str]:
                 for char in word:
                     if chars.count(char) == 0:
                         chars.append(char)
-                if len(final) < 10:
-                    final.append([word, len(word), len(chars)])
+                if len(temp_final) < 10:
+                    temp_final.append([word, len(chars)])
                     continue
-                for j in final:
-                    if j[2] < len(chars) or j[1] < len(word):
-                        if j[2] <= len(chars) and j[1] <= len(word):
-                            final.remove(j)
-                            final.append([word, len(word), len(chars)])
-                            break
+                temp_final.sort()
+                temp1 = -1
+                temp2 = -1
+                temp3 = math.inf
+                temp4 = math.inf
+                for index, j in enumerate(temp_final):
+                    if len(j[0]) < temp3:
+                        temp3 = len(j[0])
+                        temp1 = index
+                    if j[1] < temp4:
+                        temp4 = j[1]
+                        temp2 = index
+                if len(chars) > temp4 and len(word) >= temp3:
+                    temp_final.pop(temp2)
+                    temp_final.append([word, len(chars)])
+                    continue
+                if len(word) > temp3 and len(chars) >= temp4:
+                    temp_final.pop(temp1)
+                    temp_final.append([word, len(chars)])
+                    continue
+    final = []
+    for j in temp_final:
+        final.append(j[0])
     return final
 
 
