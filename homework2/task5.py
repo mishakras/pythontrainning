@@ -11,7 +11,6 @@ assert = custom_range(string.ascii_lowercase, 'g', 'p')
 assert = custom_range(string.ascii_lowercase, 'p', 'g', -2)
 == ['p', 'n', 'l', 'j', 'h']
 """
-
 from typing import List, Any, Sequence
 
 

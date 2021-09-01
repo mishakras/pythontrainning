@@ -11,8 +11,8 @@ assert combinations([1, 2], [3, 4]) == [
     [2, 4],
 ]
 """
-import copy
 from typing import List, Any
+from copy import deepcopy
 
 
 def combinations(*args: List[Any]) -> List[List]:
@@ -20,9 +20,9 @@ def combinations(*args: List[Any]) -> List[List]:
     for lists in args:
         temp1 = []
         for i in lists:
-            temp2 = copy.deepcopy(final)
+            temp2 = deepcopy(final)
             for j in temp2:
                 j.append(i)
                 temp1.append(j)
-        final = copy.deepcopy(temp1)
+        final = deepcopy(temp1)
     return final
