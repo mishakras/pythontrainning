@@ -1,5 +1,5 @@
-from homework2.task1 import get_rarest_char, get_most_common_non_ascii_char, get_longest_diverse_words
-from homework2.task1 import count_non_ascii_chars, count_punctuation_chars
+from homework2.task1 import get_rarest_char, get_most_common_non_ascii_char,\
+    get_longest_diverse_words, count_non_ascii_chars, count_punctuation_chars
 import os
 
 

@@ -23,4 +23,3 @@ def test_general():
 
 def test_step_minus():
     assert custom_range([1, 5, 8, 0, -1, 3], 0, 5, -1) == [0, 8]
-

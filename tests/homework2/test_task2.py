@@ -11,5 +11,3 @@ def test_small():
 
 def test_base():
     assert major_and_minor_elem([1, 1, 2, 3, 5]) == (1, 2)
-
-
