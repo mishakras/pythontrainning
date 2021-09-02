@@ -8,6 +8,7 @@ Given a file containing text. Complete using only default collections:
 """
 import math
 import unicodedata
+import string
 from typing import List
 
 
@@ -15,8 +16,10 @@ def get_longest_diverse_words(file_path: str) -> List[str]:
     temp_final = []
     with open(file_path) as fi:
         for line in fi:
-            temp = line.split(' ')
-            for word in temp:
+            for i in string.punctuation:
+                line = line.replace(i, ' ')
+            line = line.split(' ')
+            for word in line:
                 chars = []
                 for char in word:
                     if chars.count(char) == 0:

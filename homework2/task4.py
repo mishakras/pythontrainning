@@ -14,8 +14,9 @@ from typing import Any, Callable, List, Tuple
 
 
 def cache(func: Callable) -> Callable:
+    lst = []
 
-    def fin(*args, lst: List = []) -> Tuple[List, Any]:
+    def fin(*args) -> Tuple[List, Any]:
         a = func(*args)
         lst.append(a)
         return lst, a
