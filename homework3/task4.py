@@ -12,7 +12,6 @@ Write a function that detects if a number is Armstrong number in functionaly sty
 ### Example function signature and call
 """
 import functools
-import math
 
 
 def is_armstrong(number: int) -> bool:
