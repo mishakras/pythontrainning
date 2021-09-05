@@ -14,5 +14,5 @@ def slow_calculate(value):
 
 def calculate_all():
     for i in range(500):
-        p = Process(target=slow_calculate, args=(i,))
+        p = Process(target=slow_calculate, args=(i, ))
         p.start()

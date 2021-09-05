@@ -66,29 +66,29 @@ def test_bug2():
 def test_bug3():
     assert task3.make_filter_fix2(name='polly', type='bird')\
                .apply(sample_data_2) == [{
-         "is_dead": True,
-         "kind": "parrot",
-         "type": "bird",
-         "name": "polly"
-     },
-     {
-         "is_dead": True,
-         "kind": "parrot",
-         "type": "bird",
-         "name": "andy"
-     },
-     {
-         "is_dead": True,
-         "kind": "calibre",
-         "type": "bird",
-     }]
+                    "is_dead": True,
+                    "kind": "parrot",
+                    "type": "bird",
+                    "name": "polly"
+                 },
+                 {
+                     "is_dead": True,
+                     "kind": "parrot",
+                     "type": "bird",
+                     "name": "andy"
+                 },
+                 {
+                     "is_dead": True,
+                     "kind": "calibre",
+                     "type": "bird",
+                 }]
 
 
 def test_bug4():
     assert task3.make_filter_fix3(name='polly', type='bird')\
                .apply(sample_data_2) == [{
-         "is_dead": True,
-         "kind": "parrot",
-         "type": "bird",
-         "name": "polly"
-     }]
+                "is_dead": True,
+                "kind": "parrot",
+                "type": "bird",
+                "name": "polly"
+                }]
