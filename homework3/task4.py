@@ -15,9 +15,7 @@ import functools
 
 
 def is_armstrong(number: int) -> bool:
-    temp = []
     temp = [int(i) for i in str(number)]
     return number == functools.reduce(
         lambda x, y: x + y,
         map(lambda x: x ** len(temp), temp))
-
