@@ -15,7 +15,7 @@ def test_1_run():
 
 
 def test_2_runs():
-    fin = cache(func,2 )
+    fin = cache(func, 2)
     fin(1, 2)
     assert fin(5, 1)[0] == [False, True]
 
