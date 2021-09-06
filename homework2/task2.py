@@ -11,8 +11,8 @@ Example 2:
 Input: [2,2,1,1,1,2,2]
 Output: 2, 1
 """
-from collections import Counter
 import math
+from collections import Counter
 from typing import List, Tuple
 
 

@@ -20,4 +20,3 @@ def combinations(*args: List[Any]) -> List[List]:
     for lists in args:
         final = [j for i in lists for j in deepcopy(final) if not j.append(i)]
     return final
-

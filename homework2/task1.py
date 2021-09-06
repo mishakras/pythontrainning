@@ -9,8 +9,8 @@ Given a file containing text. Complete using only default collections:
 import math
 import string
 import unicodedata
-from typing import List
 from collections import Counter
+from typing import List
 
 
 def get_longest_diverse_words(file_path: str) -> List[str]:
