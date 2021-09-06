@@ -26,7 +26,8 @@ def test_general_string():
 
 
 def test_general_string_step2():
-    assert custom_range("abcdxyzghnk", 'b', 'k', 2) == ['b', 'd', 'y', 'g', 'n']
+    assert custom_range("abcdxyzghnk", 'b', 'k', 2)\
+           == ['b', 'd', 'y', 'g', 'n']
 
 
 def test_general_string_no_start():
