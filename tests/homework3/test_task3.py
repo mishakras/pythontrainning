@@ -59,8 +59,30 @@ def test_bug1():
 
 
 def test_bug2():
-    assert task3.make_filter_fix1(name='polly', type='bird')\
-               .apply(sample_data_2) == []
+    try:
+        start = task3.make_filter_fix1(name='polly',
+                                       type='bird')\
+               .apply(sample_data_2) == [{
+                    "is_dead": True,
+                    "kind": "parrot",
+                    "type": "bird",
+                    "name": "polly"
+                 },
+                 {
+                     "is_dead": True,
+                     "kind": "parrot",
+                     "type": "bird",
+                     "name": "andy"
+                 },
+                 {
+                     "is_dead": True,
+                     "kind": "calibre",
+                     "type": "bird",
+                 }]
+
+    except KeyError:
+        start = False
+    assert not start
 
 
 def test_bug3():
