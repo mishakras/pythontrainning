@@ -14,23 +14,20 @@ assert = custom_range(string.ascii_lowercase, 'p', 'g', -2)
 from typing import Any, List, Sequence
 
 
-def custom_range(it: Sequence, start: Any = None,
-                 end: Any = None, step: int = 1) -> List:
+def custom_range(iterable: Sequence, start: Any = None,
+                 stop: Any = None, step: int = 1) -> List:
     flag = False
     final = []
-    if step == 0:
-        final.append("Error, step must not be 0")
-        return final
     if step < 0:
-        it = reversed(it)
+        iterable = reversed(iterable)
         step = -step
     k = step
     if start is None:
         flag = True
-    for i in it:
+    for i in iterable:
         if start is not None and start == i:
             flag = True
-        if end is not None and end == i:
+        if stop is not None and stop == i:
             flag = False
         if flag:
             if k == step:

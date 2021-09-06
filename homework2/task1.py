@@ -10,20 +10,18 @@ import math
 import string
 import unicodedata
 from typing import List
+from collections import Counter
 
 
 def get_longest_diverse_words(file_path: str) -> List[str]:
     temp_final = []
     with open(file_path) as fi:
         for line in fi:
-            for i in string.punctuation:
-                line = line.replace(i, ' ')
-            line = line.split(' ')
+            line = line.strip(string.punctuation).split(' ')
             for word in line:
-                chars = []
+                chars = Counter()
                 for char in word:
-                    if chars.count(char) == 0:
-                        chars.append(char)
+                    chars[char] += 1
                 if len(temp_final) < 10:
                     temp_final.append([word, len(chars)])
                     continue
@@ -54,24 +52,15 @@ def get_longest_diverse_words(file_path: str) -> List[str]:
 
 
 def get_rarest_char(file_path: str) -> str:
-    char_amount = []
-    chars = []
-    min_char_amount = math.inf
+    char = Counter()
     with open(file_path) as fi:
         for line in fi:
             for c in line:
-                flag = True
-                if chars.count(c) > 0:
-                    char_amount[chars.index(c)] += 1
-                    flag = False
-                if flag:
-                    char_amount.append(1)
-                    chars.append(c)
-    for index, i in enumerate(chars):
-        if char_amount[index] < min_char_amount:
-            min_char = i
-            min_char_amount = char_amount[index]
-    if min_char_amount == math.inf:
+                char[c] += 1
+    chars = Counter()
+    chars.subtract(char)
+    min_char = chars.most_common(1)[0][0]
+    if len(chars.most_common(1)) == 0:
         return "File is empty"
     return min_char
 
@@ -97,24 +86,13 @@ def count_non_ascii_chars(file_path: str) -> int:
 
 
 def get_most_common_non_ascii_char(file_path: str) -> str:
-    char_amount = []
-    chars = []
-    max_char_amount = 0
+    chars = Counter()
     with open(file_path) as fi:
         for line in fi:
             for c in line:
-                if ord(c) > 127:
-                    flag = True
-                    if chars.count(c) > 0:
-                        char_amount[chars.index(c)] += 1
-                        flag = False
-                    if flag:
-                        char_amount.append(1)
-                        chars.append(c)
-    for index, i in enumerate(chars):
-        if char_amount[index] > max_char_amount:
-            max_char = i
-            max_char_amount = char_amount[index]
-    if max_char_amount == 0:
+                if c not in string.printable:
+                    chars[c] += 1
+    max_char = chars.most_common(1)[0][0]
+    if len(chars.most_common(1)) == 0:
         return "File is empty"
     return max_char

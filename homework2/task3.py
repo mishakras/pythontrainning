@@ -18,11 +18,6 @@ from typing import Any, List
 def combinations(*args: List[Any]) -> List[List]:
     final = [[]]
     for lists in args:
-        temp1 = []
-        for i in lists:
-            temp2 = deepcopy(final)
-            for j in temp2:
-                j.append(i)
-                temp1.append(j)
-        final = deepcopy(temp1)
+        final = [j for i in lists for j in deepcopy(final) if not j.append(i)]
     return final
+
