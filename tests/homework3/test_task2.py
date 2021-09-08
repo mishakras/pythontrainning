@@ -1,6 +1,6 @@
 import time
 
-import homework3.task2 as task2
+from homework import homework3 as task2
 
 
 def test1():
