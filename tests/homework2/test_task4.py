@@ -1,4 +1,4 @@
-from homework2.task4 import cache
+from homework.homework2.task4 import cache
 
 
 def func(a: int, b: int) -> bool:
