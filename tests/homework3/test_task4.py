@@ -1,4 +1,4 @@
-from homework.homework3 import is_armstrong
+from homework.homework3.task4 import is_armstrong
 
 
 def test_positive_small():
