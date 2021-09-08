@@ -1,4 +1,4 @@
-from homework1.task2 import check_fibonacci
+from homework.homework1.task2 import check_fibonacci
 
 
 def test_too_small():

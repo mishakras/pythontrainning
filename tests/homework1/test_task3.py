@@ -1,4 +1,4 @@
-from homework1.task3 import find_maxi_and_min
+from homework.homework1.task3 import find_maxi_and_min
 
 
 def test_too_small():
