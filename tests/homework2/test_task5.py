@@ -1,4 +1,4 @@
-from homework.homework2 import custom_range
+from homework.homework2.task5 import custom_range
 
 
 def test_default():

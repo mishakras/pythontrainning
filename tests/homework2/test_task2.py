@@ -1,4 +1,4 @@
-from homework.homework2 import major_and_minor_elem
+from homework.homework2.task2 import major_and_minor_elem
 
 
 def test_too_small():

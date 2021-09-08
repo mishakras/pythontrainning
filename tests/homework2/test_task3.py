@@ -1,4 +1,4 @@
-from homework.homework2 import combinations
+from homework.homework2.task3 import combinations
 
 
 def test_small():
