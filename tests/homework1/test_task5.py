@@ -1,4 +1,4 @@
-from homework.homework1 import find_maximal_subarray_sum
+from homework.homework1.task5 import find_maximal_subarray_sum
 
 
 def test_no_subarray():
