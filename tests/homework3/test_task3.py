@@ -1,4 +1,4 @@
-from homework import homework3 as task3
+from homework.homework3 import task3
 
 sample_data = [
      {
