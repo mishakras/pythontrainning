@@ -11,11 +11,18 @@ assert = custom_range(string.ascii_lowercase, 'g', 'p')
 assert = custom_range(string.ascii_lowercase, 'p', 'g', -2)
 == ['p', 'n', 'l', 'j', 'h']
 """
-from typing import Any, List, Sequence
+from typing import List, Sequence
 
 
-def custom_range(iterable: Sequence, start: Any = None,
-                 stop: Any = None, step: int = 1) -> List:
+def custom_range(iterable: Sequence, *args) -> List:
+    if len(args) == 0:
+        start, stop, step = None, None, 1
+    elif len(args) == 1:
+        start, stop, step = None, args[0], 1
+    elif len(args) == 2:
+        start, stop, step = args[0], args[1], 1
+    else:
+        start, stop, step = args[0], args[1], args[2]
     flag = False
     final = []
     if step < 0:

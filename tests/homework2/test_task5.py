@@ -6,11 +6,11 @@ def test_default():
 
 
 def test_step2():
-    assert custom_range([2, 5, 7], step=2) == [2, 7]
+    assert custom_range([2, 5, 7], None, None, 2) == [2, 7]
 
 
 def test_some_end():
-    assert custom_range([1, 5, 8, 0, -1, 4, 3], stop=0) == [1, 5, 8]
+    assert custom_range([1, 5, 8, 0, -1, 4, 3], 0) == [1, 5, 8]
 
 
 def test_general():
@@ -31,4 +31,4 @@ def test_general_string_step2():
 
 
 def test_general_string_no_start():
-    assert custom_range("abcdxyzghnk", stop='d') == ['a', 'b', 'c']
+    assert custom_range("abcdxyzghnk", 'd') == ['a', 'b', 'c']
