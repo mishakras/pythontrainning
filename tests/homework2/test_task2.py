@@ -6,8 +6,8 @@ def test_too_small():
 
 
 def test_small():
-    assert major_and_minor_elem([1, 2]) == (1, 1)
+    assert major_and_minor_elem([1, 2, 1]) == (1, 2)
 
 
 def test_base():
-    assert major_and_minor_elem([1, 1, 2, 3, 5]) == (1, 2)
+    assert major_and_minor_elem([1, 1, 1, 2, 3, 5]) == (1, 2)

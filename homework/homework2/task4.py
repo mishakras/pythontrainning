@@ -17,7 +17,10 @@ def cache(func: Callable) -> Callable:
     lst = []
 
     def fin(*args) -> Tuple[List, Any]:
+        for i in lst:
+            if i[0] == [*args]:
+                return i[1]
         a = func(*args)
-        lst.append(a)
-        return lst, a
+        lst.append([[*args], a])
+        return a
     return fin

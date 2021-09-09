@@ -19,9 +19,7 @@ def get_longest_diverse_words(file_path: str) -> List[str]:
         for line in fi:
             line = line.strip(string.punctuation).split(' ')
             for word in line:
-                chars = Counter()
-                for char in word:
-                    chars[char] += 1
+                chars = Counter(word)
                 if len(temp_final) < 10:
                     temp_final.append([word, len(chars)])
                     continue
@@ -44,7 +42,6 @@ def get_longest_diverse_words(file_path: str) -> List[str]:
                 if len(word) > temp3 and len(chars) >= temp4:
                     temp_final.pop(temp1)
                     temp_final.append([word, len(chars)])
-                    continue
     final = []
     for j in temp_final:
         final.append(j[0])
@@ -55,8 +52,8 @@ def get_rarest_char(file_path: str) -> str:
     char = Counter()
     with open(file_path) as fi:
         for line in fi:
-            for c in line:
-                char[c] += 1
+            char1 = Counter(line)
+            char = char + char1
     chars = Counter()
     chars.subtract(char)
     min_char = chars.most_common(1)[0][0]
@@ -80,19 +77,19 @@ def count_non_ascii_chars(file_path: str) -> int:
     with open(file_path) as fi:
         for line in fi:
             for c in line:
-                if ord(c) > 127:
+                if c not in string.printable:
                     amount += 1
     return amount
 
 
 def get_most_common_non_ascii_char(file_path: str) -> str:
-    chars = Counter()
+    char = Counter()
     with open(file_path) as fi:
         for line in fi:
-            for c in line:
-                if c not in string.printable:
-                    chars[c] += 1
-    max_char = chars.most_common(1)[0][0]
-    if len(chars.most_common(1)) == 0:
+            char1 = Counter(line)
+            char = char + char1
+    if len(char.most_common(1)) == 0:
         return "File is empty"
-    return max_char
+    for i in char.most_common():
+        if i[0] not in string.printable:
+            return i[0]

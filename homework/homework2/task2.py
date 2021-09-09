@@ -11,22 +11,12 @@ Example 2:
 Input: [2,2,1,1,1,2,2]
 Output: 2, 1
 """
-import math
 from collections import Counter
 from typing import List, Tuple
 
 
-def major_and_minor_elem(inp: List) -> Tuple[int, int]:
-    nums_in_list = Counter()
-    minor = math.inf
-    major = 0
-    for i in inp:
-        nums_in_list[i] += 1
-    for i in nums_in_list.most_common():
-        if i[1] < minor:
-            minor = i[1]
-            minor_int = i[0]
-        if i[1] > major:
-            major = i[1]
-            major_int = i[0]
-    return major_int, minor_int
+def major_and_minor_elem(inp: List):
+    nums = Counter(inp)
+    nums_r = Counter()
+    nums_r.subtract(nums)
+    return nums.most_common(1)[0][0], nums_r.most_common(1)[0][0]
