@@ -6,10 +6,10 @@ Given a file containing text. Complete using only default collections:
     4) Count every non ascii char
     5) Find most common non ascii char for document
 """
-import math
 import string
 import unicodedata
 from collections import Counter
+from operator import itemgetter
 from typing import List
 
 
@@ -21,27 +21,17 @@ def get_longest_diverse_words(file_path: str) -> List[str]:
             for word in line:
                 chars = Counter(word)
                 if len(temp_final) < 10:
-                    temp_final.append([word, len(chars)])
+                    temp_final.append([word, len(word), len(chars)])
                     continue
-                temp_final.sort()
-                temp1 = -1
-                temp2 = -1
-                temp3 = math.inf
-                temp4 = math.inf
-                for index, j in enumerate(temp_final):
-                    if len(j[0]) < temp3:
-                        temp3 = len(j[0])
-                        temp1 = index
-                    if j[1] < temp4:
-                        temp4 = j[1]
-                        temp2 = index
-                if len(chars) > temp4 and len(word) >= temp3:
-                    temp_final.pop(temp2)
-                    temp_final.append([word, len(chars)])
-                    continue
-                if len(word) > temp3 and len(chars) >= temp4:
-                    temp_final.pop(temp1)
-                    temp_final.append([word, len(chars)])
+                temp_final.sort(key=itemgetter(2, 1))
+                if temp_final[0][2] < len(chars):
+                    temp_final.pop(0)
+                    temp_final.append([word, len(word), len(chars)])
+                elif (temp_final[0][2] == len(chars) and
+                        temp_final[0][1] < len(word)):
+                    temp_final.pop(0)
+                    temp_final.append([word, len(word), len(chars)])
+    temp_final.sort(key=itemgetter(2, 1))
     final = []
     for j in temp_final:
         final.append(j[0])
