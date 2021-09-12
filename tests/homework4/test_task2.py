@@ -1,5 +1,5 @@
-from mock import patch, MagicMock
 import pytest
+from mock import MagicMock, patch
 
 from homework.homework4.task2 import count_dots_on_i
 

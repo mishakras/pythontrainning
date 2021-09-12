@@ -1,6 +1,7 @@
+import io
 import sys
 from contextlib import redirect_stdout
-import io
+
 from homework.homework4.task3 import my_precious_logger
 
 

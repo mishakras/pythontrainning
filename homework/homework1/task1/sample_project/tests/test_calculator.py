@@ -1,5 +1,5 @@
-from homework.homework1.task1.sample_project.\
-    calculator.calc import check_power_of_2
+from homework.homework1.task1.sample_project.calculator.calc import \
+    check_power_of_2
 
 
 def test_positive_case():
