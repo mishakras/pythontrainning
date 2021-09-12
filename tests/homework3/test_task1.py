@@ -1,5 +1,6 @@
-from mock import patch
 import time
+
+from mock import patch
 
 from homework.homework3.task1 import cache
 
