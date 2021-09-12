@@ -4,12 +4,20 @@ import pytest
 from homework.homework4.task2 import count_dots_on_i
 
 
-def test_good():
+def test_good_some_i():
     with patch('urllib.request.urlopen') as MockClass:
         cm = MagicMock()
         cm.read.return_value = 'iii'
         MockClass.return_value = cm
         assert count_dots_on_i("iii") == 3
+
+
+def test_good_no_i():
+    with patch('urllib.request.urlopen') as MockClass:
+        cm = MagicMock()
+        cm.read.return_value = 'abcdef'
+        MockClass.return_value = cm
+        assert count_dots_on_i("iii") == 0
 
 
 def test_raised_error():

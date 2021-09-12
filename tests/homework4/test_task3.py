@@ -16,6 +16,7 @@ def test_stderr():
     backup = sys.stderr
     sys.stderr = io.StringIO()
     my_precious_logger("error:abcdef")
-    assert sys.stderr.getvalue() == "error:abcdef"
+    temp = sys.stderr.getvalue()
     sys.stderr.close()
     sys.stderr = backup
+    assert temp == "error:abcdef"
