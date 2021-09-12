@@ -13,6 +13,10 @@ def slow_calculate(value):
 
 
 def calculate_all():
+    procs = []
     for i in range(500):
         p = Process(target=slow_calculate, args=(i, ))
         p.start()
+        procs.append(p)
+    for p in procs:
+        p.join()

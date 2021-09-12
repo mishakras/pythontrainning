@@ -14,11 +14,7 @@ Write a function that detects if a number
  - do not use loops, preferably using list comprehensions
 ### Example function signature and call
 """
-import functools
 
 
 def is_armstrong(number: int) -> bool:
-    temp = [int(i) for i in str(number)]
-    return number == functools.reduce(
-        lambda x, y: x + y,
-        map(lambda x: x ** len(temp), temp))
+    return number == sum([int(i)**len(str(number)) for i in str(number)])
