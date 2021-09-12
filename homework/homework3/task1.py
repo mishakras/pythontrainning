@@ -39,4 +39,3 @@ def cache(count: int):
             return a
         return fin
     return cache_maker
-
