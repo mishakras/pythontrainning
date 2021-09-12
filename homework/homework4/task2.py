@@ -18,15 +18,19 @@ You will learn:
 59
 * https://docs.python.org/3/library/urllib.request.html#urllib.request.urlopen
 """
-from urllib.request import urlopen
+import urllib.request
 
 
 def count_dots_on_i(url: str):
     temp = 0
-    with urlopen(url) as response:
-        the_page = str(response.read())
+    try:
+        temp2 = urllib.request.urlopen(url)
+        the_page = str(temp2.read())
         print(the_page)
         for i in the_page:
             if i == 'i':
                 temp += 1
-    return temp
+        return temp
+    except urllib.error.URLError:
+        raise ValueError(f"Unreachable {url}")
+
