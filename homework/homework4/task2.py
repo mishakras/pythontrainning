@@ -33,4 +33,3 @@ def count_dots_on_i(url: str):
         return temp
     except urllib.error.URLError:
         raise ValueError(f"Unreachable {url}")
-

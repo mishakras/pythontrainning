@@ -21,5 +21,7 @@ def test_good_no_i():
 
 
 def test_raised_error():
-    with pytest.raises(ValueError, match="Unreachable https://docs.python.org/3/library/urllib."):
+    with pytest.raises(ValueError,
+                       match="Unreachable "
+                             "https://docs.python.org/3/library/urllib."):
         count_dots_on_i("https://docs.python.org/3/library/urllib.")
