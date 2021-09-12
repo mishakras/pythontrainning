@@ -11,12 +11,24 @@ Example 2:
 Input: [2,2,1,1,1,2,2]
 Output: 2, 1
 """
-from collections import Counter
+import math
 from typing import List
 
 
 def major_and_minor_elem(inp: List):
-    nums = Counter(inp)
-    nums_r = Counter()
-    nums_r.subtract(nums)
-    return nums.most_common(1)[0][0], nums_r.most_common(1)[0][0]
+    temp = {}
+    for i in inp:
+        if temp.get(i) is None:
+            temp[i] = 1
+        else:
+            temp[i] += 1
+    maximum = 0
+    minimum = math.inf
+    for key in temp:
+        if temp[key] > maximum:
+            maximum = temp[key]
+            major = key
+        if temp[key] < minimum:
+            minor = temp[key]
+            minor = key
+    return major, minor

@@ -75,8 +75,7 @@ def get_most_common_non_ascii_char(file_path: str) -> str:
     char = Counter()
     with open(file_path) as fi:
         for line in fi:
-            char1 = Counter(line)
-            char = char + char1
+            char = char + Counter(line)
     if len(char.most_common(1)) == 0:
         return "File is empty"
     for i in char.most_common():
