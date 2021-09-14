@@ -16,7 +16,7 @@ def func2(a: int) -> int:
     return a
 
 
-@cache(count=1)
+@cache(count=2)
 def func3() -> str:
     return input('input was ')
 
@@ -52,4 +52,16 @@ def test_check_of_input():
     with patch('builtins.input') as MockClass:
         MockClass.return_value = '1'
         func3()
+    with patch('builtins.input') as MockClass:
+        MockClass.return_value = '2'
         assert func3() == "1"
+
+
+def test_check_of_input_changed():
+    with patch('builtins.input') as MockClass:
+        MockClass.return_value = '1'
+        func3()
+    with patch('builtins.input') as MockClass:
+        MockClass.return_value = '2'
+        func3()
+        assert func3() == "2"

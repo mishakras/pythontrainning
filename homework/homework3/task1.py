@@ -29,13 +29,25 @@ from typing import Callable
 def cache(count: int):
     def cache_maker(func: Callable) -> Callable:
         lst = {}
+        temp = []
 
         def fin(*args):
-            if lst.get(args):
-                return lst.get(args)
-            a = func(*args)
-            if len(lst) < count:
-                lst[args] = a
+            if len(args) != 0:
+                if lst.get(args):
+                    return lst.get(args)
+                a = func(*args)
+                if len(lst) < count:
+                    lst[args] = a
+            else:
+                if len(temp) == 0:
+                    a = func()
+                    temp.append(a)
+                    return temp[0]
+                if len(temp) <= count:
+                    temp.append('1')
+                    return temp[0]
+                a = func()
+                temp.append(a)
             return a
         return fin
     return cache_maker
