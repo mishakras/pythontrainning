@@ -7,7 +7,7 @@ from homework.homework4.task2 import count_dots_on_i
 def test_good_some_i():
     with patch('urllib.request.urlopen') as MockClass:
         cm = MagicMock()
-        cm.read.return_value = 'iii'
+        cm.read.return_value = 'aaiiia'
         MockClass.return_value = cm
         assert count_dots_on_i("iii") == 3
 

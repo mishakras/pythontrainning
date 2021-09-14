@@ -30,7 +30,7 @@ You will learn:
 def read_magic_number(path: str) -> bool:
     with open(path) as fi:
         for line in fi:
-            if 0 < int(line) < 3:
+            if 1 <= int(line) < 3:
                 return True
             else:
                 return False
