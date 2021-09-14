@@ -43,7 +43,7 @@ def cache(count: int):
                     a = func()
                     temp.append(a)
                     return temp[0]
-                if len(temp) <= count:
+                if len(temp) < count:
                     temp.append('1')
                     return temp[0]
                 a = func()

@@ -1,5 +1,6 @@
 import time
-
+import sys
+import io
 from mock import patch
 
 from homework.homework3.task1 import cache
@@ -18,6 +19,11 @@ def func2(a: int) -> int:
 
 @cache(count=2)
 def func3() -> str:
+    return input('input was ')
+
+
+@cache(count=2)
+def func5() -> str:
     return input('input was ')
 
 
@@ -49,19 +55,19 @@ def test_check_of_cache_to_many_calls():
 
 
 def test_check_of_input():
-    with patch('builtins.input') as MockClass:
-        MockClass.return_value = '1'
-        func3()
-    with patch('builtins.input') as MockClass:
-        MockClass.return_value = '2'
-        assert func3() == "1"
+    backup = sys.stdin
+    sys.stdin = io.StringIO('1')
+    func3()
+    sys.stdin = io.StringIO('2')
+    assert func3() == "1"
+    sys.stdin = backup
 
 
 def test_check_of_input_changed():
-    with patch('builtins.input') as MockClass:
-        MockClass.return_value = '1'
-        func3()
-    with patch('builtins.input') as MockClass:
-        MockClass.return_value = '2'
-        func3()
-        assert func3() == "2"
+    backup = sys.stdin
+    sys.stdin = io.StringIO('1')
+    func5()
+    func5()
+    sys.stdin = io.StringIO('2')
+    assert func5() == "2"
+    sys.stdin = backup
