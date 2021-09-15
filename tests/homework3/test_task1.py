@@ -1,7 +1,6 @@
-import time
-import sys
 import io
-from mock import patch
+import sys
+import time
 
 from homework.homework3.task1 import cache
 
