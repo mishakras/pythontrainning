@@ -42,7 +42,7 @@ def get_rarest_char(file_path: str) -> str:
     char = Counter()
     with open(file_path) as fi:
         for line in fi:
-            char = char + Counter(line)
+            char += Counter(line)
     chars = Counter()
     chars.subtract(char)
     min_char = chars.most_common(1)[0][0]
@@ -75,7 +75,7 @@ def get_most_common_non_ascii_char(file_path: str) -> str:
     char = Counter()
     with open(file_path) as fi:
         for line in fi:
-            char = char + Counter(line)
+            char += Counter(line)
     if len(char.most_common(1)) == 0:
         return "File is empty"
     for i in char.most_common():
