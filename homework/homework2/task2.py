@@ -18,7 +18,7 @@ from typing import List
 def major_and_minor_elem(inp: List):
     temp = {}
     for i in inp:
-        if temp.get(i) is None:
+        if i in temp.keys():
             temp[i] = 1
         else:
             temp[i] += 1
