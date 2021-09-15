@@ -18,10 +18,10 @@ from typing import List
 def major_and_minor_elem(inp: List):
     temp = {}
     for i in inp:
-        if i in temp.keys():
-            temp[i] = 1
-        else:
+        if i in temp:
             temp[i] += 1
+        else:
+            temp[i] = 1
     maximum = 0
     minimum = math.inf
     for key in temp:
