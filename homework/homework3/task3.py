@@ -30,42 +30,6 @@ def make_filter(**keywords):
     """
     filter_funcs = []
     for key, value in keywords.items():
-        def keyword_filter_func(value):
-            return value[key] == value
-        filter_funcs.append(keyword_filter_func)
-    return Filter(filter_funcs)
-
-
-def make_filter_fix1(**keywords):
-    """
-        Generate filter object for specified keywords
-    """
-    filter_funcs = []
-    for key, value in keywords.items():
-        def keyword_filter_func(item):
-            return item[key] == value
-        filter_funcs.append(keyword_filter_func)
-    return Filter(filter_funcs)
-
-
-def make_filter_fix2(**keywords):
-    """
-        Generate filter object for specified keywords
-    """
-    filter_funcs = []
-    for key, value in keywords.items():
-        def keyword_filter_func(item):
-            return item.get(key) == value
-        filter_funcs.append(keyword_filter_func)
-    return Filter(filter_funcs)
-
-
-def make_filter_fix3(**keywords):
-    """
-        Generate filter object for specified keywords
-    """
-    filter_funcs = []
-    for key, value in keywords.items():
 
         def decorator(temp1, temp2):
             def keyword_filter_func(item):
