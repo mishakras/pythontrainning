@@ -11,14 +11,11 @@ def test_no_instances():
 
 
 def test_some_instances():
-    temp1, temp2, temp3 = Temp(), Temp(), Temp()
+    _, _, _ = Temp(), Temp(), Temp()
     assert Temp.get_created_instances() == 3
 
 
 def test_delete_some_instances():
-    temp1, temp2, temp3 = Temp(), Temp(), Temp()
+    _, _, _ = Temp(), Temp(), Temp()
     Temp.reset_instances_counter()
     assert Temp.get_created_instances() == 0
-
-
-
