@@ -65,4 +65,3 @@ def test_positive_case_complex():
                 "type": "bird",
                 "name": "polly"
                 }]
-    
