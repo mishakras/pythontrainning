@@ -1,7 +1,7 @@
 import pytest
 
-from homework.homework6.task2 import\
-    Teacher, Student, HomeworkResult, DeadlineError
+from homework.homework6.task2 import (DeadlineError, HomeworkResult, Student,
+                                      Teacher)
 
 
 def test_student_do_homework_late():
