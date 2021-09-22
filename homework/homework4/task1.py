@@ -35,5 +35,5 @@ def read_magic_number(path: str) -> bool:
                 return True
             else:
                 return False
-    except:
+    except Exception:
         raise ValueError("Error occured")
