@@ -25,7 +25,6 @@ def decorator(original_func):
         inner.__name__ = original_func.__name__
         inner.__doc__ = original_func.__doc__
         setattr(inner, '__original_func', original_func)
-        print(inner.__original_func, '2')
         return inner
     return decor
 
