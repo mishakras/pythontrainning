@@ -41,5 +41,10 @@ def test_bad(create_bad_file):
 
 
 def test_except(create_exception_file):
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="Error occured"):
         read_magic_number(create_exception_file)
+
+
+def test_no_file():
+    with pytest.raises(ValueError, match="Error occured"):
+        read_magic_number("aaa")

@@ -28,9 +28,12 @@ You will learn:
 
 
 def read_magic_number(path: str) -> bool:
-    with open(path) as fi:
-        for line in fi:
-            if 1 <= int(line) < 3:
+    try:
+        with open(path) as fi:
+            line = fi.readline()
+            if 1 <= float(line) < 3:
                 return True
             else:
                 return False
+    except:
+        raise ValueError("Error occured")
