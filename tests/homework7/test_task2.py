@@ -1,5 +1,6 @@
 from homework.homework7.task2 import find_occurrences
 
+
 easy_tree = {
     "first": "RED",
     "second": "valued",
