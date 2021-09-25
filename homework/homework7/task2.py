@@ -7,7 +7,6 @@ Tree can only contains basic structures like:
 """
 from typing import Any
 
-
 # Example tree:
 example_tree = {
     "first": ["RED", "BLUE"],
