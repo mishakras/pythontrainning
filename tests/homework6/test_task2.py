@@ -39,14 +39,17 @@ def test_check_of_homework_different_teachers():
     advanced_python_teacher = Teacher('Aleksandr', 'Smetanin')
 
     good_student = Student('Lev', 'Sokolov')
+    good_student_2 = Student('Mihail', 'Kras')
 
     docs_hw = opp_teacher.create_homework('Read docs', 5)
 
     result_1 = good_student.do_homework(
-        docs_hw, 'I have done this hw too')
+        docs_hw, 'I have done this hw')
+    result_2 = good_student_2.do_homework(
+        docs_hw, 'I too have done this hw')
 
     opp_teacher.check_homework(result_1)
-    advanced_python_teacher.check_homework(result_1)
+    advanced_python_teacher.check_homework(result_2)
 
     assert len(Teacher.homework_done[docs_hw]) == 2
 
