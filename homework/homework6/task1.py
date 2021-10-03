@@ -10,19 +10,38 @@ reset_instances_counter - сбросить счетчик экземпляров
 
 
 def instances_counter(cls):
+    """Декоратор  добавляющий классу счётчик созданных экземпляров
+
+    :param cls: Класс для декорирования
+    :return: Декорированный класс
+    """
     setattr(cls, '_counter', 0)
     original_init = cls.__init__
 
     def __init__(*args, **kwargs):
+        """Новый конструктор для clc
+
+        """
         original_init(*args, **kwargs)
         cls._counter += 1
 
     @staticmethod
     def get_created_instances():
+        """Метод, возвращающий количество экземпляров класса
+
+        :return: количество экземпляров класса
+        :rtype int
+        """
         return cls._counter
 
     @staticmethod
     def reset_instances_counter():
+        """Метод, обнуляющий количество экземпляров класса и
+         возвращающий количество экземпляров класса до обнуления
+
+        :return: количество экземпляров класса до обнуления
+        :rtype int
+        """
         temp = cls._counter
         cls._counter = 0
         return temp
