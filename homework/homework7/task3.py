@@ -15,27 +15,48 @@ Example:
      [x, x, x]]
      Return value should be "x wins!"
 """
+import numpy
 from typing import List
 
 
 def tic_tac_toe_checker(board: List[List]) -> str:
-    for row in board:
-        if row[0] == "x" and row[1] == "x" and row[2] == "x":
+    board = numpy.array(board)
+    for row, _ in enumerate(board):
+        flagx = True
+        flago = True
+        for item in board[row, :]:
+            flagx = (flagx and item == 'x')
+            flago = (flago and item == 'o')
+        if flagx:
             return "x wins!"
-        if row[0] == "o" and row[1] == "o" and row[2] == "o":
+        if flago:
             return "o wins!"
-    for one, two, three in zip(board[0], board[1], board[2]):
-        if one == "x" and two == "x" and three == "x":
+        flagx = True
+        flago = True
+        for item in board[:, row]:
+            flagx = (flagx and item == 'x')
+            flago = (flago and item == 'o')
+        if flagx:
             return "x wins!"
-        if one == "o" and two == "o" and three == "o":
+        if flago:
             return "o wins!"
-    if board[0][0] == "x" and board[1][1] == "x" and board[2][2] == "x":
+    flagx = True
+    flago = True
+    for row, _ in enumerate(board):
+        flagx = (flagx and board[row, row] == 'x')
+        flago = (flagx and board[row, row] == 'o')
+    if flagx:
         return "x wins!"
-    if board[2][0] == "x" and board[1][1] == "x" and board[0][2] == "x":
-        return "x wins!"
-    if board[0][0] == "o" and board[1][1] == "o" and board[2][2] == "o":
+    if flago:
         return "o wins!"
-    if board[2][0] == "o" and board[1][1] == "o" and board[0][2] == "o":
+    flagx = True
+    flago = True
+    for row, _ in enumerate(board):
+        flagx = (flagx and board[len(board)-row-1, row] == 'x')
+        flago = (flago and board[len(board)-row-1, row] == 'o')
+    if flagx:
+        return "x wins!"
+    if flago:
         return "o wins!"
     for row in board:
         for letter in row:

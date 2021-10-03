@@ -1,3 +1,5 @@
+import pytest
+
 from homework.homework7.task3 import tic_tac_toe_checker
 
 row_x = [["x", "x", "x"],
@@ -20,25 +22,10 @@ unfinished = [["-", "o", "x"],
               ["o", "x", "o"]]
 
 
-def test_row_x():
-    assert tic_tac_toe_checker(row_x) == "x wins!"
+@pytest.mark.parametrize("test_input,expected",
+                         [(row_x, "x wins!"), (column_o, "o wins!"),
+                          (diagonal1_x, "x wins!"), (diagonal2_o, "o wins!"),
+                          (draw, "draw!"), (unfinished, "unfinished!")])
+def test_parametrized(test_input, expected):
+    assert tic_tac_toe_checker(test_input) == expected
 
-
-def test_column_o():
-    assert tic_tac_toe_checker(column_o) == "o wins!"
-
-
-def test_diagonal1_x():
-    assert tic_tac_toe_checker(diagonal1_x) == "x wins!"
-
-
-def test_diagonal2_o():
-    assert tic_tac_toe_checker(diagonal2_o) == "o wins!"
-
-
-def test_unfinished():
-    assert tic_tac_toe_checker(unfinished) == "unfinished!"
-
-
-def test_draw():
-    assert tic_tac_toe_checker(draw) == "draw!"

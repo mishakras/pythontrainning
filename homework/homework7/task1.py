@@ -13,46 +13,30 @@ Examples:
     Output: False
     Explanation: s becomes "c" while t becomes "b".
 """
+import re
 
 
-def delete_backspace(first: str) -> str:
-    temp1 = 0
-    temp3 = 0
-    for index, char in enumerate(first):
-        if char == '#':
-            temp3 += 1
-            if index == len(first) - 1:
-                first = first[:temp1 - temp3 + 1]
-        elif temp3 == 0:
-            temp1 = index
-        elif temp3 > 0:
-            if temp1 > temp3 - 1:
-                first = first[:temp1 - temp3 + 1] + first[index:]
-            else:
-                first = first[index:]
-            return first
-    return first
+def replacer(match):
+    return match[0][0]
 
 
 def backspace_compare(first: str, second: str):
-    temp1 = 0
-    for index, char in enumerate(first):
-        if char == '#':
-            temp1 += 1
-        else:
-            first = first[temp1:]
-            break
     while first.find('#') > -1:
-        first = delete_backspace(first)
-    temp1 = 0
-    for index, char in enumerate(second):
-        if char == '#':
-            temp1 += 1
-        else:
-            second = second[temp1:]
-            break
+        if first.find('#') == 0:
+            first = first[1:]
+            continue
+        if first.find('#') == 1:
+            first = first[2:]
+            continue
+        first = re.sub(r'..#', replacer, first)
     while second.find('#') > -1:
-        second = delete_backspace(second)
+        if second.find('#') == 0:
+            second = second[1:]
+            continue
+        if second.find('#') == 1:
+            second = second[2:]
+            continue
+        second = re.sub(r'..#', replacer, second)
     return first == second
 
 
