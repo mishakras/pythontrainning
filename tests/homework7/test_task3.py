@@ -28,4 +28,3 @@ unfinished = [["-", "o", "x"],
                           (draw, "draw!"), (unfinished, "unfinished!")])
 def test_parametrized(test_input, expected):
     assert tic_tac_toe_checker(test_input) == expected
-
