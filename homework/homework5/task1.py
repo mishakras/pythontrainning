@@ -37,31 +37,89 @@ import datetime
 
 
 class Homework:
-    def __init__(self, text, time):
+    """Класс реализует домашнее задание созданное классом Teacher
+    для класса Student
+
+    :param text: текст задания
+    :type text: str
+    :param created: время создания задания
+    :type created: datetime.datetime
+    :param deadline: предельная дата выполнения
+    :type deadline: datetime.timedelta
+    """
+
+    def __init__(self, text: str, time: int):
+        """Конструктор класса
+
+        :param text: текст задания
+        :type text: str
+        :param time: Время выполнения в днях
+        :type time: int
+        """
         self.text = text
         self.created = datetime.datetime.now()
         self.deadline = datetime.timedelta(days=time)
 
     def is_active(self):
+        """Проверка срока задания
+
+        :return:True, если время выполнения не истекло, False иначе
+        :rtype: bool
+        """
         return datetime.datetime.now() < self.deadline + self.created
 
 
 class Teacher:
+    """Класс реализует учителя для создания домашнего задания в виде класса
+    Homework
+
+    :param first_name: Имя учителя
+    :type first_name: str
+    :param last_name: Фамилия учителя
+    :type last_name: str
+    """
     def __init__(self, first_name, last_name):
+        """Конструктор класса
+        """
         self.first_name = first_name
         self.last_name = last_name
 
     @staticmethod
     def create_homework(text, time):
+        """Метод, реализующий создание домашнего задания
+
+        :param text: текст задания
+        :type text: str
+        :param time: Время выполнения в днях
+        :type time: int
+        :return: Домашнее задание с параметрами text, time
+        :rtype: Homework
+        """
         return Homework(text, time)
 
 
 class Student:
+    """Класс  реализует студента, выполняющего домашнюю работу
+
+    :param first_name: Имя учителя
+    :type first_name: str
+    :param last_name: Фамилия учителя
+    :type last_name: str
+    """
     def __init__(self, first_name, last_name):
+        """Конструктор класса
+        """
         self.first_name = first_name
         self.last_name = last_name
 
     def do_homework(self, homework):
+        """Метод, реализующий выполнение домашнего задания
+
+        :param homework: Домашняя работа, которую выполняет студент
+        :return: Домашняя работа, выполненная студентом или ничего если
+        работа просрочена
+        :rtype: Homework или None
+        """
         if homework.is_active():
             return homework
         else:

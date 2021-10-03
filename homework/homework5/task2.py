@@ -19,6 +19,12 @@ import functools
 
 
 def decorator(original_func):
+    """Декоратор сохраняющий данные переданной ему ему функции
+
+    :param original_func: оригинальнай функция
+    :return: Декорированная функция
+    :rtype: Callable
+    """
     def decor(func):
         def inner(*args, **kwargs):
             return func(*args, **kwargs)
