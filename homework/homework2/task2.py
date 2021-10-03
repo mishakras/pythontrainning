@@ -22,13 +22,10 @@ def major_and_minor_elem(inp: List):
             temp[i] += 1
         else:
             temp[i] = 1
-    maximum = 0
     minimum = math.inf
     for key in temp:
-        if temp[key] > maximum:
-            if temp[key] > len(inp)//2:
-                maximum = temp[key]
-                major = key
+        if temp[key] > len(inp)//2:
+            major = key
         if temp[key] < minimum:
             minimum = temp[key]
             minor = key
