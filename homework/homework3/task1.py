@@ -28,26 +28,16 @@ from typing import Callable
 
 def cache(count: int):
     def cache_maker(func: Callable) -> Callable:
-        lst = {}
-        temp = []
+        lst = {-1: 1}
 
-        def fin(*args):
-            if len(args) != 0:
-                if lst.get(args):
-                    return lst.get(args)
-                a = func(*args)
-                if len(lst) < count:
-                    lst[args] = a
-            else:
-                if len(temp) == 0:
-                    a = func()
-                    temp.append(a)
-                    return temp[0]
-                if len(temp) < count:
-                    temp.append('1')
-                    return temp[0]
-                a = func()
-                temp.append(a)
+        def fin():
+            if count > lst.get(-1):
+                if lst.get(count):
+                    lst[-1] += 1
+                    return lst.get(count)
+            lst[-1] = 1
+            a = func()
+            lst[count] = a
             return a
         return fin
     return cache_maker
