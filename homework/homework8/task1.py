@@ -33,21 +33,19 @@ class KeyValueStorage:
                 try:
                     value = int(value)
                 except Exception:
-                    if value[len(value)-1] == '\n':
-                        value = value[:len(value)-1]
+                    if value[len(value) - 1] == '\n':
+                        value = value[:len(value) - 1]
                 self.storage[key] = value
-                if key in keyword.kwlist or cat(key)[0] != 'L' \
-                        or cat(key) != 'Nl' or key[0] != '_':
+                if key in keyword.kwlist or (cat(key[0])[0] != 'L'
+                                             and cat(key[0]) != 'Nl'
+                                             and key[0] != '_'):
                     raise ValueError("Wrong name for attribute")
                 else:
-                    setattr(KeyValueStorage, key, value)
+                    if key not in self.__dir__():
+                        setattr(KeyValueStorage, key, value)
 
     def __getitem__(self, item):
         return self.storage[item]
 
     def __setitem__(self, key, value):
         self.storage[key] = value
-
-
-
-
