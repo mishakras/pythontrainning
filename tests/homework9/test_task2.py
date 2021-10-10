@@ -1,4 +1,4 @@
-from homework.homework9.task2 import suppressor, Suppressor
+from homework.homework9.task2 import Suppressor, suppressor
 
 
 def test_suppressor_class():
