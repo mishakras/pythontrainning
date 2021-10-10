@@ -31,16 +31,9 @@ class TableData:
 
     def __next__(self):
         self.cursor.execute('SELECT * from ' + self.name)
-        if len(self)+1 < self.pos:
-            for i in range(0, self.pos):
+        if len(self)+1 > self.pos:
+            for _ in range(0, self.pos):
                 temp = self.cursor.fetchone()
             self.pos += 1
             return temp
         raise StopIteration
-
-
-conn = sqlite3.connect('example.sqlite')
-cursor = conn.cursor()
-cursor.execute('SELECT * from presidents')
-data = cursor.fetchall()
-print(data)
