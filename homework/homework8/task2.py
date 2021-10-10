@@ -1,5 +1,5 @@
 import sqlite3
-import copy
+
 
 class TableData:
     def __init__(self, database, name):
@@ -10,12 +10,13 @@ class TableData:
     def __len__(self):
         temp = 0
         self.cursor.execute('SELECT * from ' + self.name)
-        while row := self.cursor.fetchone():
+        while _ := self.cursor.fetchone():
             temp += 1
         return temp
 
     def __getitem__(self, pred_name):
-        self.cursor.execute('SELECT * from ' + self.name + ' where name=?', (pred_name,))
+        self.cursor.execute('SELECT * from ' + self.name + ' where name=?',
+                            (pred_name,))
         return self.cursor.fetchone()
 
     def __contains__(self, name):
@@ -38,10 +39,8 @@ class TableData:
         raise StopIteration
 
 
-
 conn = sqlite3.connect('example.sqlite')
 cursor = conn.cursor()
 cursor.execute('SELECT * from presidents')
 data = cursor.fetchall()
 print(data)
-

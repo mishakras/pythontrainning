@@ -27,4 +27,3 @@ def test_iter():
         print(two)
         pass
     assert two == ('Trump', 1337, 'US')
-
