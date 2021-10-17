@@ -21,7 +21,7 @@ def replacer(match):
 
 
 def backspace_compare(first: str, second: str):
-    while first.find('#') > -1:
+    while '#' in first:
         if first.find('#') == 0:
             first = first[1:]
             continue
@@ -29,7 +29,7 @@ def backspace_compare(first: str, second: str):
             first = first[2:]
             continue
         first = re.sub(r'..#', replacer, first)
-    while second.find('#') > -1:
+    while '#' in second:
         if second.find('#') == 0:
             second = second[1:]
             continue
