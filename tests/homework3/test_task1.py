@@ -41,5 +41,5 @@ def test_check_of_input_changed():
 def test_check_of_id():
     backup = sys.stdin
     sys.stdin = io.StringIO('1')
-    assert id(func6()) == id(func6())
+    assert func6() is func6()
     sys.stdin = backup
