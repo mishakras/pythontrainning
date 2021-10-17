@@ -30,5 +30,3 @@ class SimplifiedEnum(type):
             setattr(simple_enum_cls, i, i)
 
         return simple_enum_cls
-
-
