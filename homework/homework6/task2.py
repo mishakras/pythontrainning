@@ -165,7 +165,7 @@ class Teacher(Person):
     домашнии работы
     :type homework_done: defaultdict(list)
     """
-    homework_done = defaultdict(list)
+    homework_done = defaultdict(set)
 
     def __init__(self, first_name, last_name):
         """Конструктор класса
@@ -194,10 +194,11 @@ class Teacher(Person):
         :type homework: HomeworkResult
         """
         if len(homework.solution) > 5:
-            if Teacher.homework_done[homework.homework]\
-                    .count(homework.solution) == 0:
-                Teacher.homework_done[homework.homework]\
-                    .append(homework.solution)
+            if not Teacher.homework_done[homework.homework]\
+                    .issuperset({homework.solution}):
+                Teacher.homework_done[homework.homework].add(homework.solution)
+                return True
+        return False
 
     @staticmethod
     def reset_results(homework: Homework = None):
