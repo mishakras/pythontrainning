@@ -21,43 +21,23 @@ import numpy
 
 
 def tic_tac_toe_checker(board: List[List]) -> str:
-    board = numpy.array(board)
-    for row, _ in enumerate(board):
-        flagx = True
-        flago = True
-        for item in board[row, :]:
-            flagx = (flagx and item == 'x')
-            flago = (flago and item == 'o')
-        if flagx:
+    for row in board:
+        if row[0] == "x" and row[1] == "x" and row[2] == "x":
             return "x wins!"
-        if flago:
+        if row[0] == "o" and row[1] == "o" and row[2] == "o":
             return "o wins!"
-        flagx = True
-        flago = True
-        for item in board[:, row]:
-            flagx = (flagx and item == 'x')
-            flago = (flago and item == 'o')
-        if flagx:
+    for one, two, three in zip(board[0], board[1], board[2]):
+        if one == "x" and two == "x" and three == "x":
             return "x wins!"
-        if flago:
+        if one == "o" and two == "o" and three == "o":
             return "o wins!"
-    flagx = True
-    flago = True
-    for row, _ in enumerate(board):
-        flagx = (flagx and board[row, row] == 'x')
-        flago = (flagx and board[row, row] == 'o')
-    if flagx:
+    if board[0][0] == "x" and board[1][1] == "x" and board[2][2] == "x":
         return "x wins!"
-    if flago:
+    if board[2][0] == "x" and board[1][1] == "x" and board[0][2] == "x":
+        return "x wins!"
+    if board[0][0] == "o" and board[1][1] == "o" and board[2][2] == "o":
         return "o wins!"
-    flagx = True
-    flago = True
-    for row, _ in enumerate(board):
-        flagx = (flagx and board[len(board)-row-1, row] == 'x')
-        flago = (flago and board[len(board)-row-1, row] == 'o')
-    if flagx:
-        return "x wins!"
-    if flago:
+    if board[2][0] == "o" and board[1][1] == "o" and board[0][2] == "o":
         return "o wins!"
     for row in board:
         for letter in row:
