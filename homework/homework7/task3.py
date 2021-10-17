@@ -17,8 +17,6 @@ Example:
 """
 from typing import List
 
-import numpy
-
 
 def tic_tac_toe_checker(board: List[List]) -> str:
     for row in board:
