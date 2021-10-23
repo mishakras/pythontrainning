@@ -103,9 +103,11 @@ async def main(i):
 
 
 def cost(int_in_str, mult):
-    while int_in_str[0] == '\n' or int_in_str[0] == '\t' or int_in_str[0] == '\r':
+    while int_in_str[0] == '\n' or int_in_str[0] == '\t'\
+            or int_in_str[0] == '\r':
         int_in_str = int_in_str[1:]
-    while int_in_str[len(int_in_str) - 1] == '\n' or int_in_str[len(int_in_str) - 1] == '\t'\
+    while int_in_str[len(int_in_str) - 1] == '\n'\
+            or int_in_str[len(int_in_str) - 1] == '\t'\
             or int_in_str[len(int_in_str) - 1] == '\r':
         int_in_str = int_in_str[:len(int_in_str) - 1]
     if ',' in int_in_str:
@@ -144,7 +146,7 @@ def span(soup):
             elif ['price-section__category'] == j['class']:
                 company_type = str(j.span.string)[2:]
             elif['price-section__current-value'] == j['class']:
-                price = cost(str(j.string),100)
+                price = cost(str(j.string), 100)
     return [name, company_type, price]
 
 
@@ -159,7 +161,8 @@ async def company(href):
     end_price = -100
     start_price = 1
     for j in soup.find_all('script'):
-        if 'window.historicalPrices = window.historicalPrices' in str(j.string):
+        if 'window.historicalPrices = window.historicalPrices' \
+           '' in str(j.string):
             for i in reversed(str(j.string).split(',')):
                 if 'Close' in i:
                     end_price = cost(i.split(':')[1], 100000)
@@ -168,7 +171,8 @@ async def company(href):
                 if 'Open' in i:
                     start_price = cost(i.split(':')[1], 100000)
                     break
-    return [name, company_type, price, p_e, week_diff, (end_price-start_price)/start_price]
+    return [name, company_type, price, p_e, week_diff,
+            (end_price-start_price)/start_price]
 
 
 loop = asyncio.get_event_loop()
