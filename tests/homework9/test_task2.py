@@ -16,10 +16,10 @@ def test_suppressor_function():
 def test_negative_suppressor_function():
     with suppressor(TypeError):
         with pytest.raises(IndexError):
-                [][2]
+            [][2]
 
 
 def test_negative_suppressor_class():
     with Suppressor(TypeError):
         with pytest.raises(IndexError):
-                [][2]
+            [][2]
