@@ -24,9 +24,9 @@ assert SizesEnum.XL == "XL"
 
 
 class SimplifiedEnum(type):
-    def __new__(mcs, cls, bases, classdict):
-        simple_enum_cls = super().__new__(mcs, cls, bases, classdict)
-        for i in classdict['_' + cls + '__keys']:
+    def __new__(cls, enum_cls, bases, classdict):
+        simple_enum_cls = super().__new__(cls, enum_cls, bases, classdict)
+        for i in classdict['_' + enum_cls + '__keys']:
             setattr(simple_enum_cls, i, i)
 
         return simple_enum_cls
