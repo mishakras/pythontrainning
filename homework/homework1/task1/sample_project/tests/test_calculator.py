@@ -1,4 +1,3 @@
-
 from homework.homework1.task1.sample_project.calculator.calc import \
     check_power_of_2
 
