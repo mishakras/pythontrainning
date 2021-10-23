@@ -163,7 +163,7 @@ class Teacher(Person):
     :type last_name: str
     :param homework_done: Параметр класса, хранящий все сделанные
     домашнии работы
-    :type homework_done: defaultdict(list)
+    :type homework_done: defaultdict(set)
     """
     homework_done = defaultdict(set)
 
