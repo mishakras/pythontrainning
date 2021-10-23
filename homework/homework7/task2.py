@@ -27,24 +27,24 @@ example_tree = {
 
 
 def find_occurrences(tree, element: Any) -> int:
-    temp = 0
+    occurrences = 0
     if isinstance(tree, list or set or tuple):
         for value in tree:
             if isinstance(value, dict):
-                temp += find_occurrences(value, element)
+                occurrences += find_occurrences(value, element)
             elif isinstance(value, list or set or tuple):
-                temp += find_occurrences(value, element)
+                occurrences += find_occurrences(value, element)
             elif value == element:
-                temp += 1
+                occurrences += 1
     else:
         for _, value in tree.items():
             if isinstance(value, dict):
-                temp += find_occurrences(value, element)
+                occurrences += find_occurrences(value, element)
             elif isinstance(value, list or set or tuple):
-                temp += find_occurrences(value, element)
+                occurrences += find_occurrences(value, element)
             elif value == element:
-                temp += 1
-    return temp
+                occurrences += 1
+    return occurrences
 
 
 if __name__ == '__main__':
