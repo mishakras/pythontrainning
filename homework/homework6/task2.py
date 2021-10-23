@@ -208,9 +208,9 @@ class Teacher(Person):
         :type homework: Homework, None
         """
         if homework is None:
-            Teacher.homework_done = defaultdict(list)
+            Teacher.homework_done = defaultdict(set)
         else:
-            Teacher.homework_done[homework] = []
+            Teacher.homework_done[homework] = set()
 
 
 if __name__ == '__main__':
