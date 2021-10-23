@@ -21,15 +21,10 @@ class Suppressor:
 
 @contextmanager
 def suppressor(error_type):
-    exc_type = 0
     try:
-        pass
         yield
     except error_type:
-        exc_type = 1
-    finally:
-        if exc_type == 1:
-            return True
+        return True
 
 
 with Suppressor(IndexError):

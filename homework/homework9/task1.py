@@ -22,32 +22,31 @@ def gen_from_file(path):
             yield int(line)
 
 
+class Numbers:
+    def __init__(self, file_list):
+        self.current_numbers = []
+        self.files = []
+        for i in file_list:
+            self.files.append(gen_from_file(i))
+        for i in self.files:
+            self.current_numbers.append(next(i))
+
+    def __next__(self):
+        try:
+            min_value = min(filter(lambda x: x is not None,
+                                   self.current_numbers))
+            min_index = self.current_numbers.index(min_value)
+            try:
+                self.current_numbers[min_index] = next(self.files[min_index])
+            except StopIteration:
+                self.current_numbers[min_index] = None
+            return min_value
+        except ValueError:
+            raise StopIteration
+
+    def __iter__(self):
+        return self
+
+
 def merge_sorted_files(file_list: List):
-
-    class Numbers:
-        def __init__(self):
-            files = []
-            self.numbers = []
-            for i in file_list:
-                files.append(gen_from_file(i))
-            current_numbers = []
-            for i in files:
-                current_numbers.append(next(i))
-            while True:
-                try:
-                    min_value = min(filter(lambda x: x is not None,
-                                           current_numbers))
-                    self.numbers.append(min_value)
-                    min_index = current_numbers.index(min_value)
-                    try:
-                        current_numbers[min_index] = next(files[min_index])
-                    except StopIteration:
-                        current_numbers[min_index] = None
-                except ValueError:
-                    break
-            self.cursor = -1
-
-        def __iter__(self):
-            return iter(self.numbers)
-
-    return Numbers()
+    return Numbers(file_list)
