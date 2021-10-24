@@ -52,7 +52,7 @@ class Homework(Base):
         session = sessionmaker(bind=engine)
         session = session()
         flag = datetime.datetime.now() <\
-               datetime.timedelta(days=self.deadline) + self.created
+            datetime.timedelta(days=self.deadline) + self.created
         session.close()
         return flag
 
@@ -156,7 +156,6 @@ class HomeworkResult(Base):
     student_id = Column(Integer, ForeignKey('students.id'))
     homework_id = Column(Integer, ForeignKey('homeworks.id'))
     teacher_id = Column(Integer, ForeignKey('teachers.id'))
-
 
 
 Base.metadata.create_all(engine)

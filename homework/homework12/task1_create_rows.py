@@ -39,7 +39,7 @@ def make_teacher(name, last_name):
     return teacher
 
 
-def make_homework(teacher:task1.Teacher, text, time):
+def make_homework(teacher: task1.Teacher, text, time):
     homework = teacher.create_homework(
         text=text,
         time=time
