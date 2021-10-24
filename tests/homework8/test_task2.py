@@ -24,7 +24,6 @@ def test_contains():
 def test_iter():
     directory = os.path.dirname(os.path.abspath(__file__))
     table = TableData(directory + '/example.sqlite', 'presidents')
-    for two in table:
-        print(two)
-        pass
-    assert two == ('Trump', 1337, 'US')
+    for i in table:
+        print(i)
+    assert i == ('Big Man Tyrone', 101, 'Kekistan')

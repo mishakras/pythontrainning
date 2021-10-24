@@ -6,6 +6,7 @@ class TableData:
         self.cursor = sqlite3.connect(database).cursor()
         self.name = name
         self.pos = 1
+        self.iter = 0
 
     def __len__(self):
         temp = 0
@@ -27,13 +28,10 @@ class TableData:
         return False
 
     def __iter__(self):
-        return self
+        return self.gen()
 
-    def __next__(self):
+    def gen(self):
         self.cursor.execute('SELECT * from ' + self.name)
-        if len(self)+1 > self.pos:
-            for _ in range(0, self.pos):
-                temp = self.cursor.fetchone()
-            self.pos += 1
-            return temp
-        raise StopIteration
+        while row := self.cursor.fetchone():
+            yield row
+        return
