@@ -18,12 +18,12 @@ def gen_from_file(path):
 def universal_file_counter(
     dir_path: Path, file_extension: str, tokenizer: Optional[Callable] = None
 ) -> int:
-    temp = 0
+    counter = 0
     for i in list(dir_path.glob('*.'+file_extension)):
-        if tokenizer is None:
-            for j in gen_from_file(i):
-                temp += 1
+        if not tokenizer:
+            for line in gen_from_file(i):
+                counter += 1
         else:
-            for j in gen_from_file(i):
-                temp += len(tokenizer(j))
-    return temp
+            for line in gen_from_file(i):
+                counter += len(tokenizer(line))
+    return counter

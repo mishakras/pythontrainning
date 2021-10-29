@@ -24,12 +24,8 @@ def gen_from_file(path):
 
 class Numbers:
     def __init__(self, file_list):
-        self.current_numbers = []
-        self.files = []
-        for i in file_list:
-            self.files.append(gen_from_file(i))
-        for i in self.files:
-            self.current_numbers.append(next(i))
+        self.files = [gen_from_file(file) for file in file_list]
+        self.current_numbers = [next(gen) for gen in self.files]
 
     def __next__(self):
         try:
