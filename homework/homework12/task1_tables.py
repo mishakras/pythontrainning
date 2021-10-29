@@ -43,19 +43,6 @@ class Homework(Base):
     deadline = Column(Integer, nullable=False)
     homeworkresults = relationship("HomeworkResult", backref='homework')
 
-    def is_active(self):
-        """Проверка срока задания
-
-        :return:True, если время выполнения не истекло, False иначе
-        :rtype: bool
-        """
-        session = sessionmaker(bind=engine)
-        session = session()
-        flag = datetime.datetime.now() <\
-            datetime.timedelta(days=self.deadline) + self.created
-        session.close()
-        return flag
-
 
 class Student(Base):
     __tablename__ = 'students'
@@ -63,27 +50,6 @@ class Student(Base):
     name = Column(String(100), nullable=False)
     last_name = Column(String(100), nullable=False)
     homeworkresults = relationship("HomeworkResult", backref='student')
-
-    def do_homework(self, homework: Homework, solution):
-        """Метод, реализующий выполнение домашнего задания
-
-        :param homework: Домашняя работа, которую выполняет студент
-        :type homework: Homework
-        :param solution: Решение домашней работы
-        :type solution: str
-        :raise DeadlineError: если домашняя работа просрочена
-        :return: Выполненная домашняя работа, выполненная студентом
-        или ничего если работа просрочена
-        :rtype: HomeworkResult, None
-            """
-        if homework.is_active():
-            return HomeworkResult(
-                homework_id=homework.id,
-                solution=solution,
-                student_id=self.id
-            )
-        else:
-            raise DeadlineError("You are late")
 
 
 class Teacher(Base):
@@ -93,59 +59,19 @@ class Teacher(Base):
     last_name = Column(String(100), nullable=False)
     homeworkresults = relationship("HomeworkResult", backref='teacher')
 
-    @staticmethod
-    def create_homework(text, time):
-        """Метод, реализующий создание домашнего задания
 
-        :param text: текст задания
-        :type text: str
-        :param time: Время выполнения в днях
-        :type time: int
-        :return: Домашнее задание с параметрами text, time
-        :rtype: Homework
-        """
-        return Homework(name=text, deadline=time)
-
-    @staticmethod
-    def check_homework(homeworkresult):
-        """Метод, реализующий проверку выполненного домашнего задания
-        если домашнее задание выполненно правильно,
-        добавляет его в выполненные
-        :param homeworkresult: выполненное домашнее задание
-        :type homeworkresult: HomeworkResult
-        """
-        session = sessionmaker(bind=engine)
-        session = session()
-        if len(homeworkresult.solution) > 5:
-            results = session.query(HomeworkResult.solution)\
-                .filter(HomeworkResult.homework_id ==
-                        homeworkresult.homework_id).all()
-            if homeworkresult.solution not in results:
-                session.add(homeworkresult)
-                session.commit()
-                session.close()
-                return True
-        session.close()
-        return False
-
-    @staticmethod
-    def reset_results(homework: Homework = None):
-        """Метод, реализующий очистку хранилища выполненных работ
-        для работы homework или всего хранилища если вызывается без параметра
-        :param homework: домашнее задание, defaults to None
-        :type homework: Homework, None
-        """
-        session = sessionmaker(bind=engine)
-        session = session()
-        if homework is None:
-            session.query(HomeworkResult).delete(synchronize_session='fetch')
-            session.commit()
-        else:
-            session.query(HomeworkResult).filter(
-                HomeworkResult.homework_id == homework.id
-            ).delete(synchronize_session='fetch')
-            session.commit()
-        session.close()
+def is_active(homework):
+    """Проверка срока задания
+    :param homework: Домашняя работа, которую проверяем
+    :return:True, если время выполнения не истекло, False иначе
+    :rtype: bool
+    """
+    session = sessionmaker(bind=engine)
+    session = session()
+    flag = datetime.datetime.now() < \
+        datetime.timedelta(days=homework.deadline) + homework.created
+    session.close()
+    return flag
 
 
 class HomeworkResult(Base):
@@ -156,6 +82,83 @@ class HomeworkResult(Base):
     student_id = Column(Integer, ForeignKey('students.id'))
     homework_id = Column(Integer, ForeignKey('homeworks.id'))
     teacher_id = Column(Integer, ForeignKey('teachers.id'))
+
+
+def do_homework(student, homework: Homework, solution):
+    """Метод, реализующий выполнение домашнего задания
+
+    :param student: Студент, выполняющий домашнюю работу
+    :param homework: Домашняя работа, которую выполняет студент
+    :type homework: Homework
+    :param solution: Решение домашней работы
+    :type solution: str
+    :raise DeadlineError: если домашняя работа просрочена
+    :return: Выполненная домашняя работа, выполненная студентом
+    или ничего если работа просрочена
+    :rtype: HomeworkResult, None
+        """
+    if is_active(homework):
+        return HomeworkResult(
+            homework_id=homework.id,
+            solution=solution,
+            student_id=student.id
+        )
+    else:
+        raise DeadlineError("You are late")
+
+
+def create_homework(text, time):
+    """Метод, реализующий создание домашнего задания
+
+    :param text: текст задания
+    :type text: str
+    :param time: Время выполнения в днях
+    :type time: int
+    :return: Домашнее задание с параметрами text, time
+    :rtype: Homework
+    """
+    return Homework(name=text, deadline=time)
+
+
+def check_homework(homeworkresult):
+    """Метод, реализующий проверку выполненного домашнего задания
+    если домашнее задание выполненно правильно,
+    добавляет его в выполненные
+    :param homeworkresult: выполненное домашнее задание
+    :type homeworkresult: HomeworkResult
+    """
+    session = sessionmaker(bind=engine)
+    session = session()
+    if len(homeworkresult.solution) > 5:
+        results = session.query(HomeworkResult.solution)\
+            .filter(HomeworkResult.homework_id ==
+                    homeworkresult.homework_id).all()
+        if homeworkresult.solution not in results:
+            session.add(homeworkresult)
+            session.commit()
+            session.close()
+            return True
+    session.close()
+    return False
+
+
+def reset_results(homework: Homework = None):
+    """Метод, реализующий очистку хранилища выполненных работ
+    для работы homework или всего хранилища если вызывается без параметра
+    :param homework: домашнее задание, defaults to None
+    :type homework: Homework, None
+    """
+    session = sessionmaker(bind=engine)
+    session = session()
+    if homework is None:
+        session.query(HomeworkResult).delete(synchronize_session='fetch')
+        session.commit()
+    else:
+        session.query(HomeworkResult).filter(
+            HomeworkResult.homework_id == homework.id
+        ).delete(synchronize_session='fetch')
+        session.commit()
+    session.close()
 
 
 Base.metadata.create_all(engine)

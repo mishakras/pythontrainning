@@ -5,50 +5,42 @@ from homework.homework12.task1_tables import (Homework, HomeworkResult,
 with task1.session_scope() as session:
     student = task1.make_student('Michail', 'Kras')
     teacher = task1.make_teacher('Daniil', 'Shadrin')
-    homework = task1.make_homework(teacher, 'Read docs', 5)
-    task1.make_homework_result(teacher, homework, student,
+    homework = task1.make_homework('Read docs', 5)
+    task1.make_homework_result(homework, student,
                                'I have done this hw')
 
 
 def test_read_student():
-    flag = False
     with task1.session_scope() as session:
-        q = session.query(Student.name).all()
+        q = session.query(Student).all()
         for i in q:
-            print(i)
-            if i == ('Michail',):
-                flag = True
-    assert flag
+            if i.name == 'Michail':
+                return
+    assert False
 
 
 def test_read_teacher():
-    flag = False
     with task1.session_scope() as session:
-        q = session.query(Teacher.name).all()
+        q = session.query(Teacher).all()
         for i in q:
-            print(i)
-            if i == ('Daniil',):
-                flag = True
-    assert flag
+            if i.name == 'Daniil':
+                return
+    assert False
 
 
 def test_read_homework():
-    flag = False
     with task1.session_scope() as session:
-        q = session.query(Homework.name).all()
+        q = session.query(Homework).all()
         for i in q:
-            print(i)
-            if i == ('Read docs',):
-                flag = True
-    assert flag
+            if i.name == 'Read docs':
+                return
+    assert False
 
 
 def test_read_homeworkresults():
-    flag = False
     with task1.session_scope() as session:
-        q = session.query(HomeworkResult.solution).all()
+        q = session.query(HomeworkResult).all()
         for i in q:
-            print(i)
-            if i == ('I have done this hw',):
-                flag = True
-    assert flag
+            if i.solution == 'I have done this hw':
+                return
+    assert False

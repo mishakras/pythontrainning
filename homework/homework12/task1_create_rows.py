@@ -39,8 +39,8 @@ def make_teacher(name, last_name):
     return teacher
 
 
-def make_homework(teacher: task1.Teacher, text, time):
-    homework = teacher.create_homework(
+def make_homework(text, time):
+    homework = task1.create_homework(
         text=text,
         time=time
     )
@@ -49,11 +49,10 @@ def make_homework(teacher: task1.Teacher, text, time):
     return homework
 
 
-def make_homework_result(teacher: task1.Teacher,
-                         homework: task1.Homework, student: task1.Student,
+def make_homework_result(homework: task1.Homework, student: task1.Student,
                          solution):
-    homework_result = student.do_homework(homework, solution)
-    teacher.check_homework(homework_result)
+    homework_result = task1.do_homework(student, homework, solution)
+    task1.check_homework(homework_result)
     return homework_result
 
 
