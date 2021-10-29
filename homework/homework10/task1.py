@@ -34,10 +34,10 @@ For scrapping you cans use beautifulsoup4
 For requesting aiohttp
 """
 import asyncio
+import json
 
 import aiohttp
 from bs4 import BeautifulSoup
-import json
 
 
 def make_dict(tasks):
