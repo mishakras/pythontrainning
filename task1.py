@@ -68,19 +68,19 @@ async def start():
     tasks.sort(key=lambda x: x[2], reverse=True)
     str1 = make_dict(tasks[:10])
     with open('price.json', 'w') as fi:
-        fi.write(json.dumps(str1))
+        fi.write(json.dumps(str1, indent=4))
     tasks.sort(key=lambda x: x[3], reverse=True)
     str1 = make_dict(tasks[:10])
     with open('pe.json', 'w') as fi:
-        fi.write(json.dumps(str1))
+        fi.write(json.dumps(str1, indent=4))
     tasks.sort(key=lambda x: x[4], reverse=True)
     str1 = make_dict(tasks[:10])
     with open('dif.json', 'w') as fi:
-        fi.write(json.dumps(str1))
+        fi.write(json.dumps(str1, indent=4))
     tasks.sort(key=lambda x: x[5], reverse=True)
     str1 = make_dict(tasks[:10])
     with open('growth.json', 'w') as fi:
-        fi.write(json.dumps(str1))
+        fi.write(json.dumps(str1, indent=4))
 
 
 async def main(i):

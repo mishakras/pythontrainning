@@ -1,0 +1,82 @@
+[
+    {
+        "code": "NVR",
+        "name": "NVR Inc.",
+        "price": 4902.66,
+        "P/E": 0.3737729753126497,
+        "growth": 0.011677169725070255,
+        "potential profit": 17.87
+    },
+    {
+        "code": "AMZN",
+        "name": "Amazon",
+        "price": 3308.34,
+        "P/E": 0.30964248524817767,
+        "growth": -0.006318273627303201,
+        "potential profit": 79.54
+    },
+    {
+        "code": "GOOG",
+        "name": "Alphabet C (ex Google)",
+        "price": 2930.77,
+        "P/E": 0.9591917174689931,
+        "growth": -0.020882387832207604,
+        "potential profit": 30.01
+    },
+    {
+        "code": "GOOGL",
+        "name": "Alphabet A (ex Google)",
+        "price": 2917.96,
+        "P/E": 0.9603705779565461,
+        "growth": -0.02037431033861022,
+        "potential profit": 30.0
+    },
+    {
+        "code": "BKNG",
+        "name": "Booking Holdings Inc Registered Shs",
+        "price": 2418.9,
+        "P/E": 0.5984292600656993,
+        "growth": -0.024139799067568336,
+        "potential profit": 460.92
+    },
+    {
+        "code": "AZO",
+        "name": "AutoZone Inc.",
+        "price": 1779.56,
+        "P/E": 0.6991205046737581,
+        "growth": 0.023625295389855628,
+        "potential profit": 16.27
+    },
+    {
+        "code": "CMG",
+        "name": "Chipotle Mexican Grill Inc.",
+        "price": 1775.99,
+        "P/E": 0.6707043479002636,
+        "growth": -0.0027029505861788,
+        "potential profit": 129.05
+    },
+    {
+        "code": "MTD",
+        "name": "Mettler-Toledo International Inc.",
+        "price": 1481.34,
+        "P/E": 0.6513070402517638,
+        "growth": -0.01738827302516911,
+        "potential profit": 43.78
+    },
+    {
+        "code": "TSLA",
+        "name": "Tesla",
+        "price": 1090.0,
+        "P/E": 1.901532536730764,
+        "growth": 0.0019363939471659284,
+        "potential profit": 299.31
+    },
+    {
+        "code": "BLK",
+        "name": "BlackRock Inc.",
+        "price": 942.18,
+        "P/E": 0.6325770460575548,
+        "growth": -0.01456116031024097,
+        "potential profit": 20.99
+    }
+]

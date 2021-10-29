@@ -1,0 +1,82 @@
+[
+    {
+        "code": "SBAC",
+        "name": "SBA Communications REIT (A)",
+        "price": 348.81,
+        "P/E": 0.5869117141875645,
+        "growth": -0.002338409881280818,
+        "potential profit": 1298.5
+    },
+    {
+        "code": "HLT",
+        "name": "Hilton Worldwide Holdings Inc Registered Shs When Issued",
+        "price": 145.6,
+        "P/E": 0.7810184078412623,
+        "growth": -0.012598310515583964,
+        "potential profit": 1070.91
+    },
+    {
+        "code": "GE",
+        "name": "General Electric",
+        "price": 104.46,
+        "P/E": 0.9773662551440327,
+        "growth": 0.00188661447033288,
+        "potential profit": 1053.78
+    },
+    {
+        "code": "MAR",
+        "name": "Marriott Inc.",
+        "price": 159.92,
+        "P/E": 0.8235029771935737,
+        "growth": -0.015489306545690308,
+        "potential profit": 713.94
+    },
+    {
+        "code": "BKR",
+        "name": "Baker Hughes Inc.",
+        "price": 25.21,
+        "P/E": 1.0641791044776119,
+        "growth": 0.006425702811244986,
+        "potential profit": 684.57
+    },
+    {
+        "code": "BKNG",
+        "name": "Booking Holdings Inc Registered Shs",
+        "price": 2418.9,
+        "P/E": 0.5984292600656993,
+        "growth": -0.024139799067568336,
+        "potential profit": 460.92
+    },
+    {
+        "code": "TSLA",
+        "name": "Tesla",
+        "price": 1090.0,
+        "P/E": 1.901532536730764,
+        "growth": 0.0019363939471659284,
+        "potential profit": 299.31
+    },
+    {
+        "code": "TJX",
+        "name": "TJX Cos. Inc.",
+        "price": 65.09,
+        "P/E": 0.521374350779065,
+        "growth": -0.0090805902383655,
+        "potential profit": 251.56
+    },
+    {
+        "code": "UDR",
+        "name": "UDR Inc",
+        "price": 55.58,
+        "P/E": 0.9236537150647579,
+        "growth": 0.007340485601355177,
+        "potential profit": 184.81
+    },
+    {
+        "code": "REG",
+        "name": "Regency Centers Corp.",
+        "price": 70.76,
+        "P/E": 1.151096425352959,
+        "growth": 0.0029218407596786388,
+        "potential profit": 171.35
+    }
+]
