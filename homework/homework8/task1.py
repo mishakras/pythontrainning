@@ -37,12 +37,12 @@ class KeyValueStorage:
                 except Exception:
                     if value[len(value) - 1] == '\n':
                         value = value[:len(value) - 1]
-                self.storage[key] = value
                 if key in keyword.kwlist or (cat(key[0])[0] != 'L'
                                              and cat(key[0]) != 'Nl'
                                              and key[0] != '_'):
                     raise ValueError("Wrong name for attribute")
                 else:
+                    self.storage[key] = value
                     if key not in self.__dir__():
                         setattr(KeyValueStorage, key, value)
 

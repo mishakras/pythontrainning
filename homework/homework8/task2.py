@@ -2,9 +2,9 @@ import sqlite3
 
 
 class TableData:
-    def __init__(self, database, name):
+    def __init__(self, database, table_name):
         self.cursor = sqlite3.connect(database).cursor()
-        self.name = name
+        self.name = table_name
         self.pos = 1
         self.iter = 0
 
@@ -15,20 +15,24 @@ class TableData:
             temp += 1
         return temp
 
-    def __getitem__(self, pred_name):
+    def __getitem__(self, name):
         self.cursor.execute('SELECT * from ' + self.name + ' where name=?',
-                            (pred_name,))
+                            (name,))
         return self.cursor.fetchone()
 
     def __contains__(self, name):
-        self.cursor.execute('SELECT * from ' + self.name)
-        while row := self.cursor.fetchone():
-            if row[0] == name:
-                return True
+        self.cursor.execute('SELECT * from ' + self.name + ' where name=?',
+                            (name,))
+        if self.cursor.fetchone():
+            return True
         return False
 
     def __iter__(self):
-        return self.gen()
+        self.iteration = self.gen()
+        return self
+
+    def __next__(self):
+        return next(self.iteration)
 
     def gen(self):
         self.cursor.execute('SELECT * from ' + self.name)
