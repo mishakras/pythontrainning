@@ -9,8 +9,8 @@ def test_fast_time():
     assert time.time() - start < 60
 
 
-#def test_slow_time():
-#    start = time.time()
-#    for i in range(50):
-#        task2.slow_calculate(i)
-#    assert time.time() - start > 60
+def test_slow_time():
+    start = time.time()
+    for i in range(50):
+        task2.slow_calculate(i)
+    assert time.time() - start > 60
