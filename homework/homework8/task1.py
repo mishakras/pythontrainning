@@ -42,8 +42,8 @@ class KeyValueStorage:
                                              and key[0] != '_'):
                     raise ValueError("Wrong name for attribute")
                 else:
-                    self.storage[key] = value
                     if key not in self.__dir__():
+                        self.storage[key] = value
                         setattr(KeyValueStorage, key, value)
 
     def __getitem__(self, item):

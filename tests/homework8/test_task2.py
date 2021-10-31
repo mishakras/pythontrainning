@@ -21,6 +21,12 @@ def test_contains():
     assert 'Yeltsin' in table
 
 
+def test_not_contains():
+    directory = os.path.dirname(os.path.abspath(__file__))
+    table = TableData(directory + '/example.sqlite', 'presidents')
+    assert 'Misha' not in table
+
+
 def test_iter():
     directory = os.path.dirname(os.path.abspath(__file__))
     table = TableData(directory + '/example.sqlite', 'presidents')

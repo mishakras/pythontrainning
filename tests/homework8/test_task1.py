@@ -1,3 +1,5 @@
+import pytest
+
 from homework.homework8.task1 import KeyValueStorage
 
 
@@ -5,6 +7,13 @@ def test_one_key(tmpdir):
     tmpdir.join('task1.txt').write('key=value')
     storage = KeyValueStorage(str(tmpdir)+'/task1.txt')
     assert storage['key'] == 'value'
+
+
+def test_bad_key(tmpdir):
+    tmpdir.join('task1.txt').write('__class__=value')
+    storage = KeyValueStorage(str(tmpdir)+'/task1.txt')
+    with pytest.raises(KeyError):
+        storage['__class__']
 
 
 def test_some_keys(tmpdir):
