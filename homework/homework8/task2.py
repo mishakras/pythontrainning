@@ -11,13 +11,13 @@ class TableData:
         return self.cursor.fetchone()[0]
 
     def __getitem__(self, name):
-        self.cursor.execute('SELECT * from ' + self.table_name + ' where name=?',
-                            (name,))
+        self.cursor.execute('SELECT * from ' + self.table_name +
+                            ' where name=?', (name,))
         return self.cursor.fetchone()
 
     def __contains__(self, name):
-        self.cursor.execute('SELECT * from ' + self.table_name + ' where name=?',
-                            (name,))
+        self.cursor.execute('SELECT * from ' + self.table_name +
+                            ' where name=?', (name,))
         return bool(self.cursor.fetchone())
 
     def __iter__(self):
