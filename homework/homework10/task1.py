@@ -66,21 +66,21 @@ async def start():
         if i not in tasks:
             tasks.append(i)
     tasks.sort(key=lambda x: x[2], reverse=True)
-    str1 = make_dict(tasks[:10])
+    price = make_dict(tasks[:10])
     with open('price.json', 'w') as fi:
-        fi.write(json.dumps(str1, indent=4))
+        json.dump(price, fi, indent=4)
     tasks.sort(key=lambda x: x[3], reverse=True)
-    str1 = make_dict(tasks[:10])
+    pe = make_dict(tasks[:10])
     with open('pe.json', 'w') as fi:
-        fi.write(json.dumps(str1, indent=4))
+        json.dump(pe, fi, indent=4)
     tasks.sort(key=lambda x: x[4], reverse=True)
-    str1 = make_dict(tasks[:10])
+    dif = make_dict(tasks[:10])
     with open('dif.json', 'w') as fi:
-        fi.write(json.dumps(str1, indent=4))
+        json.dump(dif, fi, indent=4)
     tasks.sort(key=lambda x: x[5], reverse=True)
-    str1 = make_dict(tasks[:10])
+    growth = make_dict(tasks[:10])
     with open('growth.json', 'w') as fi:
-        fi.write(json.dumps(str1, indent=4))
+        json.dump(growth, fi, indent=4)
 
 
 async def main(i):
