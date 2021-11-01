@@ -43,6 +43,6 @@ def test_read_homework():
 
 def test_read_homeworkresults():
     with task1.session_scope() as session:
-        q = session.query(HomeworkResult).filter\
-            (HomeworkResult.solution == 'I have done this hw').all()
+        q = session.query(HomeworkResult).\
+            filter(HomeworkResult.solution == 'I have done this hw').all()
         assert bool(q)
