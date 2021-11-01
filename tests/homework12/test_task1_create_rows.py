@@ -37,17 +37,12 @@ def test_read_teacher():
 
 def test_read_homework():
     with task1.session_scope() as session:
-        q = session.query(Homework).all()
-        for i in q:
-            if i.name == 'Read docs':
-                return
-    assert False
+        q = session.query(Homework).filter(Homework.name == 'Read docs').all()
+        assert bool(q)
 
 
 def test_read_homeworkresults():
     with task1.session_scope() as session:
-        q = session.query(HomeworkResult).all()
-        for i in q:
-            if i.solution == 'I have done this hw':
-                return
-    assert False
+        q = session.query(HomeworkResult).filter\
+            (HomeworkResult.solution == 'I have done this hw').all()
+        assert bool(q)
