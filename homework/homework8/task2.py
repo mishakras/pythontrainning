@@ -21,14 +21,12 @@ class TableData:
         return bool(self.cursor.fetchone())
 
     def __iter__(self):
-        self.iteration = self.gen()
+        self.cursor.execute('SELECT * from ' + self.table_name)
         return self
 
     def __next__(self):
-        return next(self.iteration)
-
-    def gen(self):
-        self.cursor.execute('SELECT * from ' + self.table_name)
-        while row := self.cursor.fetchone():
-            yield row
-        return
+        row = self.cursor.fetchone()
+        if row:
+            return row
+        else:
+            raise StopIteration
