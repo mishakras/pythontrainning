@@ -13,38 +13,26 @@ with task1.session_scope() as session:
 
 def test_read_student():
     with task1.session_scope() as session:
-        q = session.query(Student).all()
-        for i in q:
-            if i.name == 'Michail':
-                return
-    assert False
+        q = session.query(Student).filter(Student.name == 'Michail').all()
+        assert bool(q)
 
 
 def test_read_another_student():
     with task1.session_scope() as session:
-        q = session.query(Student).all()
-        for i in q:
-            if i.name == 'Alexander':
-                return
-        assert False
+        q = session.query(Student).filter(Student.name == 'Alexander').all()
+        assert bool(q)
 
 
 def test_read_wrong_student():
     with task1.session_scope() as session:
-        q = session.query(Student).all()
-        for i in q:
-            if i.name == 'Daniil':
-                assert False
-        return
+        q = session.query(Student).filter(Student.name == 'Daniil').all()
+        assert not bool(q)
 
 
 def test_read_teacher():
     with task1.session_scope() as session:
-        q = session.query(Teacher).all()
-        for i in q:
-            if i.name == 'Daniil':
-                return
-    assert False
+        q = session.query(Teacher).filter(Teacher.name == 'Daniil').all()
+        assert bool(q)
 
 
 def test_read_homework():
